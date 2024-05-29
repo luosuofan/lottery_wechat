@@ -1,0 +1,10 @@
+app:
+  app_name: "lottery_wechat"
+  version: "v0.0.1"
+  port: 8080 #端口号
+  run_mod: release #运行模式debug、release等
+log:
+  log_pattern: "file" #日志打印形式，也可以打印到终端stdout
+  log_path: "./log/sever.log" #日志路径
+  save_days: 5 #日志保存天数
+  level: debug #日志级别
