@@ -8,3 +8,14 @@ log:
   log_path: "./log/sever.log" #日志路径
   save_days: 5 #日志保存天数
   level: debug #日志级别
+
+db:
+  host: "0.0.0.0" #ip地址，本地是0.0.0.0
+  port: 8086
+  user: "root"
+  password: "123456"
+  dbname: "lottery_system"
+  #GORM配置
+  max_idle_conn: 5 #最大空闲连接数
+  max_open_conn: 20 #最大连接数
+  max_idle_time: 300 #最大空闲时间，超过该时间自动释放

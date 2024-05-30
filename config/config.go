@@ -15,9 +15,11 @@ var (
 )
 
 type GlobalConfig struct {
-	AppConfig AppConf `yaml:"app" mapstructure:"app" `
+	AppConfig AppConf `yaml:"app" mapstructure:"app"`
 	LogConfig LogConf `yaml:"log" mapstructure:"log"`
+	DbConfig  DbConf  `yaml:"db" mapstructure:"db"`
 }
+
 type AppConf struct {
 	AppName string `yaml:"app_name" mapstructure:"app_name"` //yaml表示是在哪种类型文件中，mapstructure才是真正起对应关系,其实只需要后一个
 	Version string `yaml:"version" mapstructure:"version"`
@@ -30,6 +32,17 @@ type LogConf struct {
 	LogPath    string `yaml:"log_path" mapstructure:"log_path"`
 	SaveDays   uint   `yaml:"save_days" mapstructure:"save_days"`
 	Level      string `yaml:"level" mapstructure:"level"`
+}
+
+type DbConf struct {
+	Host        string `yaml:"host" mapstructure:"host"`
+	Port        int    `yaml:"port" mapstructure:"port"`
+	User        string `yaml:"user" mapstructure:"user"`
+	PassWord    string `yaml:"password" mapstructure:"password"`
+	DbName      string `yaml:"dbname" mapstructure:"dbname"`
+	MaxIdleConn int    `yaml:"max_idle_conn" mapstructure:"host"mapstructure:"max_idle_conn"`
+	MaxOpenConn int    `yaml:"max_open_conn" mapstructure:"host"mapstructure:"max_open_conn"`
+	MaxIdleTime int    `yaml:"max_idle_time" mapstructure:"host"mapstructure:"max_idle_time"`
 }
 
 func GetGlobalConfig() *GlobalConfig { //对外暴露配置文件调用接口
