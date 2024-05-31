@@ -7,7 +7,7 @@ import (
 )
 
 func AddPrize(viewPrizeList []*ViewPrize) error {
-	prizeList := make([]*model.Prize, len(viewPrizeList))
+	prizeList := make([]*model.Prize, 0)
 	for _, viewPrize := range viewPrizeList {
 		prize := &model.Prize{
 			ID:             viewPrize.ID,

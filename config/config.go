@@ -36,13 +36,13 @@ type LogConf struct {
 
 type DbConf struct {
 	Host        string `yaml:"host" mapstructure:"host"`
-	Port        int    `yaml:"port" mapstructure:"port"`
+	Port        string `yaml:"port" mapstructure:"port"`
 	User        string `yaml:"user" mapstructure:"user"`
 	PassWord    string `yaml:"password" mapstructure:"password"`
 	DbName      string `yaml:"dbname" mapstructure:"dbname"`
-	MaxIdleConn int    `yaml:"max_idle_conn" mapstructure:"host"mapstructure:"max_idle_conn"`
-	MaxOpenConn int    `yaml:"max_open_conn" mapstructure:"host"mapstructure:"max_open_conn"`
-	MaxIdleTime int    `yaml:"max_idle_time" mapstructure:"host"mapstructure:"max_idle_time"`
+	MaxIdleConn int    `yaml:"max_idle_conn" mapstructure:"max_idle_conn"`
+	MaxOpenConn int    `yaml:"max_open_conn" mapstructure:"max_open_conn"`
+	MaxIdleTime int    `yaml:"max_idle_time" mapstructure:"max_idle_time"`
 }
 
 func GetGlobalConfig() *GlobalConfig { //对外暴露配置文件调用接口
@@ -61,7 +61,7 @@ func readConf() {
 	}
 	err = viper.Unmarshal(&gloablConfig) //将已读取的配置文件映射到gloablConfig里
 	if err != nil {
-		panic("Unmarshal config file err")
+		panic("Unmarshal config file err" + err.Error())
 	}
 }
 

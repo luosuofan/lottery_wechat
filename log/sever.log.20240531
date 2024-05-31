@@ -1,0 +1,1 @@
+[2024-05-31 13:22:25] INFO[main.go,18][11111111][2024-05-31 13:32:11] INFO[main.go,18][11111111][2024-05-31 13:35:36] INFO[db.go,23][connArgs:root:123456@tcp(0.0.0.0:3306)/lottery_system?charset=utf8mb4&parseTime=True&loc=Local][2024-05-31 13:35:36] INFO[prize.go,15][repo|add prize success]

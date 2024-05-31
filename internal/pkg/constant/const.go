@@ -7,3 +7,5 @@ const (
 	PrizeTypeLargeEntity = 4
 )
 const PrizeInuse = 1
+
+const ProbabilityLimit = 10000

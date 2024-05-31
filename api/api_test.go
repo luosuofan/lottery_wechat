@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"lottery_wechat/internal/pkg/constant"
 	"lottery_wechat/internal/service"
 	"testing"
@@ -8,7 +9,7 @@ import (
 
 func TestAddPrize(t *testing.T) { //做test固定写法t *testing.T
 	prizeList := make([]*service.ViewPrize, 4)
-	prizeTypeCoin := service.ViewPrize{
+	prizeCoin := service.ViewPrize{
 		ID:             1,
 		Name:           "Q币",
 		Pic:            "http://",
@@ -22,9 +23,9 @@ func TestAddPrize(t *testing.T) { //做test固定写法t *testing.T
 		ProbabilityMin: 0,
 		ProbabilityMax: 0,
 	}
-	prizeList[0] = &prizeTypeCoin
+	prizeList[0] = &prizeCoin
 
-	prizeTypeSmallEntity := service.ViewPrize{
+	prizeSmallEntity := service.ViewPrize{
 		ID:             2,
 		Name:           "充电宝",
 		Pic:            "",
@@ -38,7 +39,7 @@ func TestAddPrize(t *testing.T) { //做test固定写法t *testing.T
 		ProbabilityMin: 0,
 		ProbabilityMax: 0,
 	}
-	prizeList[1] = &prizeTypeSmallEntity
+	prizeList[1] = &prizeSmallEntity
 
 	prizeTypeLargeEntity := service.ViewPrize{
 		ID:             3,
@@ -79,6 +80,22 @@ func TestAddPrize(t *testing.T) { //做test固定写法t *testing.T
 		}
 		prize.ProbabilityMin = start
 		prize.ProbabilityMax = start + prize.Probability
-
+		if prize.ProbabilityMax >= constant.ProbabilityLimit {
+			prize.ProbabilityMax = constant.ProbabilityLimit
+			start = 0
+		} else {
+			start += prize.Probability
+		}
 	}
+	viewPrizeList := []*service.ViewPrize{
+		&prizeCoin, &prizeSmallEntity, &prizeTypeLargeEntity, &prizeTypeCoupon,
+	}
+	addPrizeReq := service.InitPrizeReq{
+		ViewPrizeList: viewPrizeList,
+	}
+	bytesData, err := json.Marshal(&addPrizeReq) //创建对应的json格式来进行测试
+	if err != nil {
+		t.Errorf("Mashal req err:%v", err)
+	}
+	t.Log(string(bytesData))
 }
