@@ -1,4 +1,4 @@
-package service
+package service //定义返回体
 
 type ViewPrize struct {
 	ID             int64  `json:"id"`
@@ -16,4 +16,9 @@ type ViewPrize struct {
 }
 type InitPrizeReq struct {
 	ViewPrizeList []*ViewPrize `json:"view_prize_list"`
+}
+
+type GetPrizeInfoRsp struct {
+	PrizeTypeNum int   `json:"prize_type_num"`
+	PrizeTotal   int64 `json:"prize_total"`
 }
